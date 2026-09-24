@@ -177,6 +177,8 @@
     }
 
     var dot = W < 560 ? 2 : 1.6;
+    // Keep every particle the same whole-device-pixel size on high-DPI screens.
+    dot = Math.max(1, Math.round(dot * dpr)) / dpr;
     var settleSpeed = W < 560 ? 0.014 : 0.05;
     var hoverSettleSpeed = 0.05;
     var start = performance.now();
