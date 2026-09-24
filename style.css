@@ -279,9 +279,15 @@ html[data-theme="light"] .preloader-theme-toggle::before {
   top: 9px;
   z-index: 1;
   display: flex;
-  color: var(--fg);
-  opacity: 0.6;
+  color: var(--fg) !important;
+  opacity: 0.8;
+  filter: drop-shadow(0 0 3px rgba(64, 196, 99, 0.8));
   pointer-events: none;
+}
+.preloader-theme-toggle .theme-sun svg,
+.preloader-theme-toggle .theme-moon svg {
+  fill: none;
+  stroke: currentColor;
 }
 .preloader-theme-toggle .theme-moon { left: 9px; }
 .preloader-theme-toggle .theme-sun { right: 9px; }
