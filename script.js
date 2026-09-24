@@ -100,8 +100,8 @@
     }
   }
 
-  if (preloader && glowPointer) {
-    preloader.addEventListener("mousemove", function (e) {
+  if (preloader) {
+    preloader.addEventListener("pointermove", function (e) {
       hovX = e.clientX;
       hovY = e.clientY;
       hovOn = true;
@@ -110,7 +110,7 @@
         preloaderLight.classList.add("on");
       }
     });
-    preloader.addEventListener("mouseleave", function () {
+    preloader.addEventListener("pointerleave", function () {
       hovOn = false;
       if (preloaderLight) preloaderLight.classList.remove("on");
     });

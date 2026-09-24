@@ -184,14 +184,27 @@ img {
   border-radius: 50%;
   background: radial-gradient(circle, rgba(64, 196, 99, 0.2) 0%, rgba(64, 196, 99, 0.07) 28%, transparent 70%);
   pointer-events: none;
-  opacity: 0;
+  opacity: 0.32;
   transform: translate(-50%, -50%);
   transition: opacity 0.35s ease;
   will-change: transform, opacity;
   z-index: 1;
+  animation: preloader-light-float 5s ease-in-out infinite;
 }
 .preloader-light.on {
-  opacity: 1;
+  opacity: 0.85;
+  animation: none;
+}
+@keyframes preloader-light-float {
+  0%, 100% { transform: translate(50vw, 48vh) translate(-50%, -50%) scale(0.9); }
+  50% { transform: translate(54vw, 52vh) translate(-50%, -50%) scale(1.08); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .preloader-light {
+    animation: none;
+    opacity: 0.32;
+    transform: translate(50vw, 50vh) translate(-50%, -50%);
+  }
 }
 .preloader-fallback {
   display: none;
