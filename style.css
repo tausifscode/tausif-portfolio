@@ -113,6 +113,53 @@ button {
   cursor: pointer;
 }
 
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  border: 1px solid var(--green-bright);
+  border-radius: 50%;
+  box-shadow: 0 0 14px rgba(64, 196, 99, 0.45);
+  pointer-events: none;
+  opacity: 0;
+  z-index: 500;
+  transform: translate(-50%, -50%) scale(0.7);
+  transition: opacity 0.2s ease, transform 0.2s ease, background 0.2s ease;
+  will-change: transform;
+}
+.custom-cursor::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--green-bright);
+  transform: translate(-50%, -50%);
+}
+.custom-cursor.visible {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+.custom-cursor.hovering {
+  background: rgba(64, 196, 99, 0.14);
+  transform: translate(-50%, -50%) scale(1.35);
+}
+@media (hover: hover) and (pointer: fine) {
+  html,
+  html * {
+    cursor: none !important;
+  }
+}
+@media (prefers-reduced-motion: reduce), (hover: none), (pointer: coarse) {
+  .custom-cursor {
+    display: none;
+  }
+}
+
 img {
   max-width: 100%;
   display: block;
@@ -161,21 +208,39 @@ img {
   right: 28px;
   z-index: 4;
   width: auto;
-  height: 34px;
-  padding: 0 12px;
-  gap: 8px;
-  border: 1px solid var(--border);
+  min-width: 112px;
+  height: 38px;
+  padding: 0 14px;
+  gap: 9px;
+  border: 1px solid rgba(92, 224, 126, 0.4);
   border-radius: 999px;
-  background: var(--card-bg);
-  color: var(--muted);
+  background: color-mix(in srgb, var(--bg-soft) 78%, transparent);
+  color: var(--fg);
   font-family: "IBM Plex Mono", "Courier New", monospace;
   font-size: 10px;
+  font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2), 0 0 18px rgba(64, 196, 99, 0.1);
 }
 .preloader-theme-toggle:hover {
-  background: var(--card-hover);
-  color: var(--fg);
+  border-color: var(--green-bright);
+  background: rgba(64, 196, 99, 0.14);
+  box-shadow: 0 8px 30px rgba(64, 196, 99, 0.18);
+}
+.preloader-theme-toggle .theme-sun,
+.preloader-theme-toggle .theme-moon {
+  color: var(--green-bright);
+}
+@media (max-width: 560px) {
+  .preloader-theme-toggle {
+    top: 18px;
+    right: 18px;
+    min-width: 104px;
+    height: 36px;
+    padding: 0 11px;
+    font-size: 9px;
+  }
 }
 .preloader.hidden {
   animation: preloader-out 0.7s ease forwards;

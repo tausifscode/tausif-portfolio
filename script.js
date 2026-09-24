@@ -48,6 +48,29 @@
     });
   });
 
+  var customCursor = document.getElementById("customCursor");
+  var customCursorPointer = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  if (customCursor && customCursorPointer && !prefersReduced) {
+    document.addEventListener("pointermove", function (e) {
+      customCursor.style.left = e.clientX + "px";
+      customCursor.style.top = e.clientY + "px";
+      customCursor.classList.add("visible");
+    });
+    document.addEventListener("pointerover", function (e) {
+      if (e.target.closest("a, button, [role='button'], input, textarea, select")) {
+        customCursor.classList.add("hovering");
+      }
+    });
+    document.addEventListener("pointerout", function (e) {
+      if (e.target.closest("a, button, [role='button'], input, textarea, select")) {
+        customCursor.classList.remove("hovering");
+      }
+    });
+    document.addEventListener("pointerleave", function () {
+      customCursor.classList.remove("visible");
+    });
+  }
+
   /* ---------- Hero-only cursor glow ---------- */
   var heroGlow = document.getElementById("heroGlow");
   var heroSection = document.getElementById("home");
