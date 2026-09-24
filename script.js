@@ -153,10 +153,10 @@
     var data = img.data;
     particles.length = 0;
     // Use a denser sample on phones so the smaller glyphs do not break apart.
-    var sampleSpacing = W < 560 ? 2 : 3;
+    var sampleSpacing = W < 560 ? 1.5 : 3;
     var step = Math.max(2, Math.round(dpr * sampleSpacing));
     var colors = ["237,237,237", "237,237,237", "237,237,237", "64,196,99"];
-    var max = W < 560 ? 12000 : 9000;
+    var max = W < 560 ? 18000 : 9000;
     for (var py = 0; py < off.height && particles.length < max; py += step) {
       for (var px = 0; px < off.width && particles.length < max; px += step) {
         var idx = (py * off.width + px) * 4;
