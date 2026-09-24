@@ -133,10 +133,10 @@ button {
   position: fixed;
   top: 0;
   left: 0;
-  width: 240px;
-  height: 240px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(64, 196, 99, 0.08) 0%, transparent 68%);
+  background: radial-gradient(circle, rgba(64, 196, 99, 0.035) 0%, transparent 68%);
   pointer-events: none;
   opacity: 0;
   z-index: 1;
@@ -145,7 +145,7 @@ button {
   will-change: transform, opacity;
 }
 .page-cursor-glow.visible {
-  opacity: 0.28;
+  opacity: 0.16;
 }
 .custom-cursor::after {
   content: "";
