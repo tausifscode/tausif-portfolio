@@ -58,19 +58,23 @@
     heroGlow.classList.add("idle");
 
     if (glowPointer) {
-      window.addEventListener("mousemove", function (e) {
+      heroSection.addEventListener("mousemove", function (e) {
         hgTX = e.clientX;
         hgTY = e.clientY + window.scrollY;
         pointerActive = true;
         heroGlow.classList.remove("idle");
         heroGlow.classList.add("on");
       });
+      heroSection.addEventListener("mouseenter", function () {
+        heroGlow.classList.add("on");
+        heroGlow.classList.remove("idle");
+      });
+      heroSection.addEventListener("mouseleave", function () {
+        pointerActive = false;
+        heroGlow.classList.add("idle");
+        heroGlow.classList.remove("on");
+      });
     }
-    document.addEventListener("mouseleave", function () {
-      pointerActive = false;
-      heroGlow.classList.add("idle");
-      heroGlow.classList.remove("on");
-    });
     window.addEventListener("blur", function () {
       pointerActive = false;
       heroGlow.classList.add("idle");
@@ -86,11 +90,11 @@
     (function heroGlowLoop(now) {
       if (!pointerActive) {
         var idleTime = (now - glowStart) / 1000;
-        hgTX = window.innerWidth / 2 + Math.sin(idleTime * 0.45) * 90;
-        hgTY = window.innerHeight / 2 + window.scrollY + Math.cos(idleTime * 0.35) * 55;
+        hgTX = window.innerWidth / 2 + Math.sin(idleTime * 0.3) * 45;
+        hgTY = window.innerHeight / 2 + window.scrollY + Math.cos(idleTime * 0.24) * 28;
       }
-      hgX += (hgTX - hgX) * 0.1;
-      hgY += (hgTY - hgY) * 0.1;
+      hgX += (hgTX - hgX) * 0.06;
+      hgY += (hgTY - hgY) * 0.06;
       heroGlow.style.transform = "translate(" + hgX + "px, " + hgY + "px) translate(-50%, -50%)";
       requestAnimationFrame(heroGlowLoop);
     })(performance.now());
