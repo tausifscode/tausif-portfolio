@@ -81,6 +81,7 @@
   /* ---------- Preloader ---------- */
   var preloader = document.getElementById("preloader");
   var canvas = document.getElementById("particleCanvas");
+  var preloaderLight = document.getElementById("preloaderLight");
   var fallbackText = document.getElementById("preloaderFallback");
   var countEl = document.getElementById("preloaderCount");
   var particleRAF = null;
@@ -104,9 +105,14 @@
       hovX = e.clientX;
       hovY = e.clientY;
       hovOn = true;
+      if (preloaderLight) {
+        preloaderLight.style.transform = "translate(" + e.clientX + "px, " + e.clientY + "px) translate(-50%, -50%)";
+        preloaderLight.classList.add("on");
+      }
     });
     preloader.addEventListener("mouseleave", function () {
       hovOn = false;
+      if (preloaderLight) preloaderLight.classList.remove("on");
     });
   }
 
