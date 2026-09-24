@@ -129,6 +129,24 @@ button {
   transition: opacity 0.2s ease, transform 0.2s ease, background 0.2s ease;
   will-change: transform;
 }
+.page-cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--glow-follow) 0%, transparent 68%);
+  pointer-events: none;
+  opacity: 0;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.35s ease;
+  will-change: transform, opacity;
+}
+.page-cursor-glow.visible {
+  opacity: 0.45;
+}
 .custom-cursor::after {
   content: "";
   position: absolute;
@@ -155,7 +173,8 @@ button {
   }
 }
 @media (prefers-reduced-motion: reduce), (hover: none), (pointer: coarse) {
-  .custom-cursor {
+  .custom-cursor,
+  .page-cursor-glow {
     display: none;
   }
 }

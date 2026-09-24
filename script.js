@@ -53,12 +53,20 @@
   });
 
   var customCursor = document.getElementById("customCursor");
+  var pageCursorGlow = document.getElementById("pageCursorGlow");
   var customCursorPointer = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-  if (customCursor && customCursorPointer && !prefersReduced) {
+  if ((customCursor || pageCursorGlow) && customCursorPointer && !prefersReduced) {
     document.addEventListener("pointermove", function (e) {
-      customCursor.style.left = e.clientX + "px";
-      customCursor.style.top = e.clientY + "px";
-      customCursor.classList.add("visible");
+      if (customCursor) {
+        customCursor.style.left = e.clientX + "px";
+        customCursor.style.top = e.clientY + "px";
+        customCursor.classList.add("visible");
+      }
+      if (pageCursorGlow) {
+        pageCursorGlow.style.left = e.clientX + "px";
+        pageCursorGlow.style.top = e.clientY + "px";
+        pageCursorGlow.classList.add("visible");
+      }
     });
     document.addEventListener("pointerover", function (e) {
       if (e.target.closest("a, button, [role='button'], input, textarea, select")) {
@@ -71,7 +79,8 @@
       }
     });
     document.addEventListener("pointerleave", function () {
-      customCursor.classList.remove("visible");
+      if (customCursor) customCursor.classList.remove("visible");
+      if (pageCursorGlow) pageCursorGlow.classList.remove("visible");
     });
   }
 
