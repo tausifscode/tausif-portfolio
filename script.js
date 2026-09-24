@@ -272,6 +272,7 @@
 
   var welcome = document.getElementById("preloaderWelcome");
   var enterBtn = document.getElementById("preloaderEnter");
+  var preloaderBottom = document.querySelector(".preloader-bottom");
   var loadTarget = 0;
   var shownWelcome = false;
 
@@ -342,6 +343,7 @@
       if (countEl) countEl.textContent = pct + "%";
       if (ramped >= 1 && loadTarget >= 1) {
         preloader.classList.add("loading-complete");
+        if (preloaderBottom) preloaderBottom.style.display = "none";
         showWelcome();
         return; // wait for the user to continue
       }
