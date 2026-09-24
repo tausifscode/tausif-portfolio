@@ -56,6 +56,10 @@
   var pageCursorGlow = document.getElementById("pageCursorGlow");
   var customCursorPointer = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
   if ((customCursor || pageCursorGlow) && customCursorPointer && !prefersReduced) {
+    var pageGlowX = window.innerWidth / 2;
+    var pageGlowY = window.innerHeight / 2;
+    var pageGlowTargetX = pageGlowX;
+    var pageGlowTargetY = pageGlowY;
     document.addEventListener("pointermove", function (e) {
       if (customCursor) {
         customCursor.style.left = e.clientX + "px";
@@ -63,8 +67,8 @@
         customCursor.classList.add("visible");
       }
       if (pageCursorGlow) {
-        pageCursorGlow.style.left = e.clientX + "px";
-        pageCursorGlow.style.top = e.clientY + "px";
+        pageGlowTargetX = e.clientX;
+        pageGlowTargetY = e.clientY;
         pageCursorGlow.classList.add("visible");
       }
     });
@@ -82,6 +86,18 @@
       if (customCursor) customCursor.classList.remove("visible");
       if (pageCursorGlow) pageCursorGlow.classList.remove("visible");
     });
+    window.addEventListener("resize", function () {
+      pageGlowX = pageGlowTargetX = window.innerWidth / 2;
+      pageGlowY = pageGlowTargetY = window.innerHeight / 2;
+    });
+    (function pageGlowLoop() {
+      pageGlowX += (pageGlowTargetX - pageGlowX) * 0.1;
+      pageGlowY += (pageGlowTargetY - pageGlowY) * 0.1;
+      if (pageCursorGlow) {
+        pageCursorGlow.style.transform = "translate(" + pageGlowX + "px, " + pageGlowY + "px) translate(-50%, -50%)";
+      }
+      requestAnimationFrame(pageGlowLoop);
+    })();
   }
 
   /* ---------- Hero-only cursor glow ---------- */

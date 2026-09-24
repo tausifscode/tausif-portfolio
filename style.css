@@ -133,20 +133,19 @@ button {
   position: fixed;
   top: 0;
   left: 0;
-  width: 420px;
-  height: 420px;
+  width: 640px;
+  height: 640px;
   border-radius: 50%;
   background: radial-gradient(circle, var(--glow-follow) 0%, transparent 65%);
   pointer-events: none;
   opacity: 0;
   z-index: 0;
   transform: translate(-50%, -50%);
-  transition: opacity 0.35s ease;
-  mix-blend-mode: screen;
+  transition: opacity 0.4s ease;
   will-change: transform, opacity;
 }
 .page-cursor-glow.visible {
-  opacity: 0.55;
+  opacity: 1;
 }
 .custom-cursor::after {
   content: "";
