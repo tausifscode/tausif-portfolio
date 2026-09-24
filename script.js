@@ -341,6 +341,7 @@
       var pct = ramped >= 1 ? Math.round(loadTarget * 100) : Math.round(ramped * 100);
       if (countEl) countEl.textContent = pct + "%";
       if (ramped >= 1 && loadTarget >= 1) {
+        preloader.classList.add("loading-complete");
         showWelcome();
         return; // wait for the user to continue
       }

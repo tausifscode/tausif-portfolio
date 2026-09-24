@@ -192,6 +192,13 @@ img {
   display: flex;
   justify-content: flex-end;
   padding: 28px 32px;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+}
+.preloader.loading-complete .preloader-bottom {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(8px);
 }
 .preloader-pill {
   display: inline-flex;
