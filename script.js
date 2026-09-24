@@ -29,7 +29,11 @@
     document.querySelectorAll(".js-theme-toggle").forEach(function (btn) {
       btn.setAttribute("aria-pressed", t === "dark" ? "false" : "true");
       var label = btn.querySelector(".theme-label");
-      if (label) label.textContent = t === "dark" ? "Light theme" : "Dark theme";
+      if (label) {
+        label.textContent = btn.classList.contains("preloader-theme-toggle")
+          ? (t === "dark" ? "Light" : "Dark")
+          : (t === "dark" ? "Light theme" : "Dark theme");
+      }
     });
   }
   function setTheme(t) {
