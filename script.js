@@ -51,19 +51,21 @@
   var heroGlow = document.getElementById("heroGlow");
   var heroSection = document.getElementById("home");
   var glowPointer = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-  if (heroGlow && heroSection && glowPointer && !prefersReduced) {
+  if (heroGlow && heroSection && !prefersReduced) {
     var hgX = window.innerWidth / 2, hgY = window.innerHeight / 2 + window.scrollY;
     var hgTX = hgX, hgTY = hgY, pointerActive = false;
     var glowStart = performance.now();
     heroGlow.classList.add("idle");
 
-    window.addEventListener("mousemove", function (e) {
-      hgTX = e.clientX;
-      hgTY = e.clientY + window.scrollY;
-      pointerActive = true;
-      heroGlow.classList.remove("idle");
-      heroGlow.classList.add("on");
-    });
+    if (glowPointer) {
+      window.addEventListener("mousemove", function (e) {
+        hgTX = e.clientX;
+        hgTY = e.clientY + window.scrollY;
+        pointerActive = true;
+        heroGlow.classList.remove("idle");
+        heroGlow.classList.add("on");
+      });
+    }
     document.addEventListener("mouseleave", function () {
       pointerActive = false;
       heroGlow.classList.add("idle");

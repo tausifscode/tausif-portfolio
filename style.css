@@ -502,11 +502,6 @@ html[data-theme="light"] .theme-moon { display: none; }
 .hero .cursor-glow.idle {
   opacity: 1;
 }
-@media (hover: none), (pointer: coarse) {
-  .hero .cursor-glow {
-    display: none;
-  }
-}
 @media (prefers-reduced-motion: reduce) {
   .hero .cursor-glow {
     display: none;
