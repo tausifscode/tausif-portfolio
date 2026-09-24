@@ -706,21 +706,7 @@ html[data-theme="light"] .theme-moon { display: none; }
   overflow: hidden;
 }
 .hero .cursor-glow {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 640px;
-  height: 640px;
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--glow-follow) 0%, transparent 65%);
-  pointer-events: none;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  will-change: transform, opacity;
-}
-.hero .cursor-glow.on {
-  opacity: 1;
+  display: none;
 }
 @media (hover: none), (pointer: coarse) {
   .hero .cursor-glow {
