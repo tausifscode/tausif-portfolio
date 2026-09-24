@@ -150,10 +150,32 @@ img {
   position: fixed;
   inset: 0;
   z-index: 200;
-  background: #000;
+  background: var(--bg);
   display: flex;
   align-items: flex-end;
   overflow: hidden;
+}
+.preloader-theme-toggle {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  z-index: 4;
+  width: auto;
+  height: 34px;
+  padding: 0 12px;
+  gap: 8px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--card-bg);
+  color: var(--muted);
+  font-family: "IBM Plex Mono", "Courier New", monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.preloader-theme-toggle:hover {
+  background: var(--card-hover);
+  color: var(--fg);
 }
 .preloader.hidden {
   animation: preloader-out 0.7s ease forwards;
@@ -236,13 +258,13 @@ img {
   align-items: center;
   gap: 10px;
   padding: 10px 16px;
-  background: #050505;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
   border-radius: 999px;
   font-size: 11px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(237, 237, 237, 0.8);
+  color: var(--muted);
 }
 .preloader-bar {
   width: 8px;
@@ -251,7 +273,7 @@ img {
   background: hsl(var(--green-hsl, 137, 53%, 51%));
 }
 .preloader-count {
-  color: #fff;
+  color: var(--fg);
 }
 .preloader-welcome {
   position: absolute;
@@ -279,7 +301,7 @@ img {
   font-weight: 500;
   font-size: clamp(1.6rem, 4.5vw, 2.6rem);
   letter-spacing: -0.02em;
-  color: #fff;
+  color: var(--fg);
 }
 .welcome-dot {
   color: var(--green-bright);
@@ -289,7 +311,7 @@ img {
   font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(237, 237, 237, 0.65);
+  color: var(--muted);
 }
 .preloader-enter {
   margin-top: 8px;
@@ -300,9 +322,9 @@ img {
   font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--fg);
   padding: 14px 32px;
-  border: 1px solid rgba(64, 196, 99, 0.55);
+  border: 1px solid var(--green);
   border-radius: 999px;
   background: rgba(64, 196, 99, 0.1);
   box-shadow: 0 0 30px rgba(64, 196, 99, 0.18);

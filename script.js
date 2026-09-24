@@ -39,6 +39,7 @@
     } catch (e) {}
     if (themeMeta) themeMeta.setAttribute("content", currentTheme() === "light" ? "#f4f6f8" : "#050505");
     syncThemeUI(currentTheme());
+    document.dispatchEvent(new CustomEvent("themechange"));
   }
   setTheme(currentTheme());
   document.querySelectorAll(".js-theme-toggle").forEach(function (btn) {
@@ -116,6 +117,13 @@
     });
   }
 
+  document.addEventListener("themechange", function () {
+    if (preloader && canvas) {
+      stopParticles();
+      initParticles();
+    }
+  });
+
   function initParticles() {
     if (!canvas) {
       showFallbackText();
@@ -161,7 +169,9 @@
     // Use a denser sample on phones so the smaller glyphs do not break apart.
     var sampleSpacing = W < 560 ? 1.5 : 3;
     var step = Math.max(2, Math.round(dpr * sampleSpacing));
-    var colors = ["237,237,237", "237,237,237", "237,237,237", "64,196,99"];
+    var colors = currentTheme() === "light"
+      ? ["16,20,24", "16,20,24", "16,20,24", "28,157,77"]
+      : ["237,237,237", "237,237,237", "237,237,237", "64,196,99"];
     var max = W < 560 ? 18000 : 9000;
     for (var py = 0; py < off.height && particles.length < max; py += step) {
       for (var px = 0; px < off.width && particles.length < max; px += step) {
