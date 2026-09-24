@@ -499,6 +499,9 @@ html[data-theme="light"] .theme-moon { display: none; }
 .hero .cursor-glow.on {
   opacity: 1;
 }
+.hero .cursor-glow.idle {
+  opacity: 1;
+}
 @media (hover: none), (pointer: coarse) {
   .hero .cursor-glow {
     display: none;
