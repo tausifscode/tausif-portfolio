@@ -486,8 +486,8 @@ html[data-theme="light"] .theme-moon { display: none; }
   position: absolute;
   top: 0;
   left: 0;
-  width: 360px;
-  height: 360px;
+  width: 640px;
+  height: 640px;
   border-radius: 50%;
   background: radial-gradient(circle, var(--glow-follow) 0%, transparent 65%);
   pointer-events: none;
@@ -497,15 +497,11 @@ html[data-theme="light"] .theme-moon { display: none; }
   will-change: transform, opacity;
 }
 .hero .cursor-glow.on {
-  opacity: 0.38;
+  opacity: 1;
 }
-.hero .cursor-glow.idle {
-  opacity: 0.22;
-}
-@media (max-width: 600px) {
+@media (hover: none), (pointer: coarse) {
   .hero .cursor-glow {
-    width: 280px;
-    height: 280px;
+    display: none;
   }
 }
 @media (prefers-reduced-motion: reduce) {

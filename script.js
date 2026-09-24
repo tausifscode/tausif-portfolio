@@ -51,53 +51,31 @@
   var heroGlow = document.getElementById("heroGlow");
   var heroSection = document.getElementById("home");
   var glowPointer = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-  if (heroGlow && heroSection && !prefersReduced) {
-    var hgX = window.innerWidth / 2, hgY = window.innerHeight / 2 + window.scrollY;
-    var hgTX = hgX, hgTY = hgY, pointerActive = false;
-    var glowStart = performance.now();
-    heroGlow.classList.add("idle");
+  if (heroGlow && heroSection && glowPointer && !prefersReduced) {
+    var hgX = window.innerWidth / 2, hgY = window.innerHeight / 2, hgTX = hgX, hgTY = hgY;
 
-    if (glowPointer) {
-      heroSection.addEventListener("mousemove", function (e) {
-        hgTX = e.clientX;
-        hgTY = e.clientY + window.scrollY;
-        pointerActive = true;
-        heroGlow.classList.remove("idle");
-        heroGlow.classList.add("on");
-      });
-      heroSection.addEventListener("mouseenter", function () {
-        heroGlow.classList.add("on");
-        heroGlow.classList.remove("idle");
-      });
-      heroSection.addEventListener("mouseleave", function () {
-        pointerActive = false;
-        heroGlow.classList.add("idle");
-        heroGlow.classList.remove("on");
-      });
-    }
+    window.addEventListener("mousemove", function (e) {
+      hgTX = e.clientX;
+      hgTY = e.clientY + window.scrollY;
+      heroGlow.classList.add("on");
+    });
+    document.addEventListener("mouseleave", function () {
+      heroGlow.classList.remove("on");
+    });
     window.addEventListener("blur", function () {
-      pointerActive = false;
-      heroGlow.classList.add("idle");
       heroGlow.classList.remove("on");
     });
     window.addEventListener("resize", function () {
-      if (!pointerActive) {
-        hgX = hgTX = window.innerWidth / 2;
-        hgY = hgTY = window.innerHeight / 2 + window.scrollY;
-      }
+      hgX = hgTX = window.innerWidth / 2;
+      hgY = hgTY = window.innerHeight / 2;
     });
 
-    (function heroGlowLoop(now) {
-      if (!pointerActive) {
-        var idleTime = (now - glowStart) / 1000;
-        hgTX = window.innerWidth / 2 + Math.sin(idleTime * 0.3) * 45;
-        hgTY = window.innerHeight / 2 + window.scrollY + Math.cos(idleTime * 0.24) * 28;
-      }
-      hgX += (hgTX - hgX) * 0.06;
-      hgY += (hgTY - hgY) * 0.06;
+    (function heroGlowLoop() {
+      hgX += (hgTX - hgX) * 0.1;
+      hgY += (hgTY - hgY) * 0.1;
       heroGlow.style.transform = "translate(" + hgX + "px, " + hgY + "px) translate(-50%, -50%)";
       requestAnimationFrame(heroGlowLoop);
-    })(performance.now());
+    })();
   }
 
   /* ---------- Preloader ---------- */
