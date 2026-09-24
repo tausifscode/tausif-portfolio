@@ -176,7 +176,7 @@
       return;
     }
 
-    var dot = W < 560 ? 2.2 : 1.6; // slightly larger dots on phones so the name reads clearly
+    var dot = W < 560 ? 2 : 1.6;
     var settleSpeed = W < 560 ? 0.014 : 0.05;
     var hoverSettleSpeed = 0.05;
     var start = performance.now();
@@ -208,7 +208,9 @@
         var fx = settled ? Math.sin(wavePhase) * 0.45 : 0;
         var fy = settled ? Math.sin(wavePhase) * 1.8 : Math.sin(t * 0.9 + p.tx * 0.015) * 1.4;
         ctx.fillStyle = "rgba(" + p.c + ",0.9)";
-        ctx.fillRect(p.x + fx + gx, p.y + fy + gy, dot, dot);
+        var drawX = Math.round((p.x + fx + gx) * dpr) / dpr;
+        var drawY = Math.round((p.y + fy + gy) * dpr) / dpr;
+        ctx.fillRect(drawX, drawY, dot, dot);
       }
       particleRAF = requestAnimationFrame(frame);
     })(start);
